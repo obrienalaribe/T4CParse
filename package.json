@@ -1,0 +1,23 @@
+{
+  "name": "Transport4Church-Production-App",
+  "version": "0.0.1",
+  "description": "Production app for Transport4Church",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.2.x",
+    "kerberos": "~0.0.x",
+    "parse": "~1.6.12",
+    "parse-server": "~2.2"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=4.3"
+  }
+}
