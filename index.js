@@ -33,11 +33,6 @@ var api = new ParseServer({
         pfx: riderPushCert, // Dev PFX or P12
         bundleId: 'org.rccg.TransportForChurch',
         production: true
-      },
-      {
-        pfx: driverPushCert,
-        bundleId: 'org.rccg.TransportForChurchDriver',
-        production: true
       }
     ]
   }
