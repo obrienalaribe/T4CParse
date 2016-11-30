@@ -22,7 +22,7 @@ if (!riderPushCert || !driverPushCert) {
 
 
 var api = new ParseServer({
-  serverURL: "https://transportforchurch.herokuapp.com/",
+  serverURL: "https://transportforchurch.herokuapp.com/parse",
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'localAppId',
