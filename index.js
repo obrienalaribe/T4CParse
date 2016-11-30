@@ -11,7 +11,7 @@ if (!databaseUri) {
 }
 
 
-var riderPushCert = __dirname + '/certs/Rider_Prod.p12'
+var riderPushCert = __dirname + '/certs/Rider_Prod.p12';
 var driverPushCert = __dirname + '/certs/Driver_Prod.p12';
 
 if (!riderPushCert || !driverPushCert) {
