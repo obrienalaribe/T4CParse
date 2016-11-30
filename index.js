@@ -10,12 +10,31 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, please check');
 }
 
+
+var riderPushCert = __dirname + '/certs/Rider_Prod.p12'
+var driverPushCert = __dirname + '/certs/Driver_Prod.p12';
+
+
 var api = new ParseServer({
   serverURL: "https://transportforchurch.herokuapp.com/",
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'a5dee5f93e5dce98effcfb4aa30bf5f1',
-  masterKey: process.env.MASTER_KEY || 'bb054a15cab720e6b3ef4ca890ec1335'
+  appId: process.env.APP_ID || 'localAppId',
+  masterKey: process.env.MASTER_KEY || 'localKey',
+  push: {
+    ios: [
+      {
+        pfx: riderPushCert, // Dev PFX or P12
+        bundleId: 'org.rccg.TransportForChurch',
+        production: true
+      },
+      {
+        pfx: driverPushCert,
+        bundleId: 'org.rccg.TransportForChurchDriver',
+        production: true
+      }
+    ]
+  }
 
 });
 
