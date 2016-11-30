@@ -16,6 +16,8 @@ var driverPushCert = __dirname + '/certs/Driver_Prod.p12';
 
 if (!riderPushCert || !driverPushCert) {
   console.log('Could not read P12 files');
+}else{
+  console.log('Successfully read all P12 files');
 }
 
 
