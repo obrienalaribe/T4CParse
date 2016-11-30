@@ -11,11 +11,11 @@ if (!databaseUri) {
 }
 
 var api = new ParseServer({
-  serverURL: "https://insta231.herokuapp.com/parse",
+  serverURL: "https://transportforchurch.herokuapp.com/",
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'myAppId',
-  masterKey: process.env.MASTER_KEY || 'myMasterKey'
+  appId: process.env.APP_ID || 'a5dee5f93e5dce98effcfb4aa30bf5f1',
+  masterKey: process.env.MASTER_KEY || 'bb054a15cab720e6b3ef4ca890ec1335'
 
 });
 
@@ -27,7 +27,7 @@ app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
-  res.status(200).send('I dream of being a web site.');
+  res.status(200).send('production up and ready :)');
 });
 
 var port = process.env.PORT || 1337;
