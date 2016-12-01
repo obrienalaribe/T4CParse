@@ -11,8 +11,6 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, please check');
 }
 
-var riderPush = path.join(__dirname, '/certs/Rider_Prod.p12');
-
 var riderPushCert = __dirname + '/certs/Rider_Prod.p12';
 var driverPushCert = __dirname + '/certs/Driver_Prod.p12';
 
@@ -32,7 +30,7 @@ var api = new ParseServer({
   push: {
     ios: [
       {
-        pfx: riderPush, // Dev PFX or P12
+        pfx: riderPushCert, // Dev PFX or P12
         bundleId: 'org.rccg.TransportForChurch',
         production: true
       }
