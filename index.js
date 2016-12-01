@@ -10,10 +10,8 @@ var databaseUri = process.env.DATABASE_URI || process.env.MONGOLAB_URI;
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, please check');
 }
-//Rider app
-var riderPushCert = __dirname + '/certs/Rider_Prod.p12';
-var riderDev = __dirname + '/certs/Rider_Dev.p12';
 
+var riderPushCert = __dirname + '/certs/Rider_Prod.p12';
 var driverPushCert = __dirname + '/certs/Driver_Prod.p12';
 
 if (!riderPushCert || !driverPushCert) {
@@ -33,11 +31,6 @@ var api = new ParseServer({
   masterKey: process.env.MASTER_KEY || 'localKey',
   push: {
     ios: [
-      {
-        pfx: riderDev, // Dev PFX or P12
-        bundleId: 'org.rccg.TransportForChurch',
-        production: false 
-      },
       {
         pfx: riderPushCert,
         bundleId: 'org.rccg.TransportForChurch',
