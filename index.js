@@ -10,8 +10,10 @@ var databaseUri = process.env.DATABASE_URI || process.env.MONGOLAB_URI;
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, please check');
 }
-
+//Rider app
 var riderPushCert = __dirname + '/certs/Rider_Prod.p12';
+var riderDev = __dirname + '/certs/Rider_Dev.p12';
+
 var driverPushCert = __dirname + '/certs/Driver_Prod.p12';
 
 if (!riderPushCert || !driverPushCert) {
@@ -20,9 +22,11 @@ if (!riderPushCert || !driverPushCert) {
   console.log('Successfully read all P12 files ' + driverPushCert);
 }
 
+// Serve the Parse API on the /parse URL prefix
+var mountPath = process.env.PARSE_MOUNT || '/parse';
 
 var api = new ParseServer({
-  serverURL: "https://transportforchurch.herokuapp.com/parse",
+  serverURL: mountPath,
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'localAppId',
@@ -30,8 +34,18 @@ var api = new ParseServer({
   push: {
     ios: [
       {
-        pfx: riderPushCert, // Dev PFX or P12
+        pfx: riderDev, // Dev PFX or P12
         bundleId: 'org.rccg.TransportForChurch',
+        production: false 
+      },
+      {
+        pfx: riderPushCert,
+        bundleId: 'org.rccg.TransportForChurch',
+        production: true
+      },
+      {
+        pfx: driverPushCert,
+        bundleId: 'org.rccg.TransportForChurchDriver',
         production: true
       }
     ]
@@ -41,8 +55,7 @@ var api = new ParseServer({
 
 var app = express();
 
-// Serve the Parse API on the /parse URL prefix
-var mountPath = process.env.PARSE_MOUNT || '/parse';
+
 app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
